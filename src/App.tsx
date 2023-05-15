@@ -4,7 +4,7 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      Drag and Drop app
+      Drag and Drop app first set up
     </div>
   );
 }
