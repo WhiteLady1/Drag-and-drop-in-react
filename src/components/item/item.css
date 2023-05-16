@@ -8,6 +8,10 @@
   transform: scale(95%);
 }
 
+.item:hover.item--selected .item__icon {
+  transform: none;
+}
+
 .item__icon {
   width: 100px;
   height: 100px;

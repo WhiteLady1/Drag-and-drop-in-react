@@ -1,8 +1,24 @@
 .experimental-table {
-  min-width: 300px;
-  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 300px;
+  height: 300px;
   margin: 50px auto;
   background-color: rgb(48, 79, 74);
   border-radius: 50%;
   border: 5px solid rgb(33, 55, 51);
+  transition: transform .2s;
+  overflow: hidden;
+}
+
+.experimental-table--entered {
+  transform: scale(105%);
+}
+
+.experimental-table__indredients-wrapper {
+  display: flex;
+  gap: 10px;
 }

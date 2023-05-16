@@ -3,20 +3,19 @@ import './item.css';
 
 export interface ItemProps {
   name: string;
-  onDrag: (e: React.DragEvent<HTMLDivElement>) => void;
+  selected?: boolean;
+  onDrag?: (e: React.DragEvent<HTMLDivElement>) => void;
+  onCanceld?: () => void;
 };
-
-// get beter name of interface!!!
-interface ItemSpecificProps {
-
-}
 
 export const Item: React.FC<ItemProps> = ({
   name,
-  onDrag
+  selected = false,
+  onDrag,
+  onCanceld
 }) => {
   return (
-    <div className='item' draggable onDragStart={onDrag}>
+    <div className={selected ? 'item item--selected' : 'item'} draggable={selected ? false : true} onDragStart={onDrag} onClick={onCanceld}>
       <span className='item__icon'></span>
       <p className='item__name'>{name}</p>
     </div>

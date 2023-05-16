@@ -1,12 +1,18 @@
 import React from 'react';
-import './App.css';
 import { ExperimantalTable, Item } from './components';
+import './App.css';
 
-const list = [
+export interface ListItem {
+  id: string;
+  name: string;
+};
+
+const LIST: ListItem[] = [
   {
     id: 'dkr45',
     name: 'item1',
-  },  {
+  }, 
+  {
     id: 'dkt775',
     name: 'item2',
   },
@@ -37,22 +43,44 @@ const list = [
 ];
 
 function App() {
-  const [experimentalItemList, setExperimentalItemList] = React.useState([]);
+  const [dragedItemId, setDragedItemId] = React.useState<string>();
+  const [experimentalItemList, setExperimentalItemList] = React.useState<ListItem[]>([]);
 
-  const dragStart = (e: React.DragEvent<HTMLDivElement>, index: number) => {
-    console.log('onDrag run', index);
-    console.log(e.target);
+  const dragStart = (e: React.DragEvent<HTMLDivElement>, id: string) => {
+    setDragedItemId(id);
+  };
+
+  const handleDrop = () => {
+    const newItem = LIST.find(item => item.id === dragedItemId);
+    if (newItem) {
+      setExperimentalItemList(prevValue => ([
+        ...prevValue, 
+        ...[newItem],
+      ]))
+    }
+  };
+
+  const handleUnselect = (id: string) => {
+    const itemForRemove = experimentalItemList.findIndex(item => item.id === id);
+    const array = [...experimentalItemList];
+    array.splice(itemForRemove, 1);
+    setExperimentalItemList(array);
   };
 
   return (
     <div className="App">
       <h2>Drag and Drop app!</h2>
       <div className='items-list'>
-        {list.map((item, index) => (
-          <Item key={item.id} name={item.name} onDrag={(e) => dragStart(e, index)}/>
+        {LIST.map(item => (
+          <Item
+            key={item.id}
+            name={item.name}
+            selected={experimentalItemList.find(experimentItem => experimentItem.id === item.id) ? true : false}
+            onDrag={(e) => dragStart(e, item.id)}
+          />
         ))}
       </div>
-      <ExperimantalTable itemList={experimentalItemList}/>
+      <ExperimantalTable itemList={experimentalItemList} onDrop={handleDrop} onCanceld={handleUnselect}/>
     </div>
   );
 }
