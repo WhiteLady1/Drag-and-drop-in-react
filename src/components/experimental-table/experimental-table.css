@@ -1,0 +1,8 @@
+.experimental-table {
+  min-width: 300px;
+  min-height: 300px;
+  margin: 50px auto;
+  background-color: rgb(48, 79, 74);
+  border-radius: 50%;
+  border: 5px solid rgb(33, 55, 51);
+}
