@@ -1,62 +1,37 @@
 import React from 'react';
-import { ExperimantalTable, Item } from './components';
+import { ExperimantalTable, Item, Message } from './components';
+import { CLEANING_PRODUCTS } from './data/data';
 import './App.css';
 
 export interface ListItem {
   id: string;
   name: string;
+  image: string;
 };
 
-const LIST: ListItem[] = [
-  {
-    id: 'dkr45',
-    name: 'item1',
-  }, 
-  {
-    id: 'dkt775',
-    name: 'item2',
-  },
-  {
-    id: 'aad55',
-    name: 'item3',
-  },
-  {
-    id: 'dth90',
-    name: 'item4',
-  },
-  {
-    id: '00fgt',
-    name: 'item5',
-  },
-  {
-    id: 'BNM51',
-    name: 'item6',
-  },
-  {
-    id: '1dfh8',
-    name: 'item7',
-  },
-  {
-    id: 'Asdt6',
-    name: 'item8',
-  }
-];
+const DATA = [...CLEANING_PRODUCTS];
 
 function App() {
   const [dragedItemId, setDragedItemId] = React.useState<string>();
   const [experimentalItemList, setExperimentalItemList] = React.useState<ListItem[]>([]);
+  const [message, setMessage] = React.useState<string[]>([]);
 
-  const dragStart = (e: React.DragEvent<HTMLDivElement>, id: string) => {
+  const dragStart = (id: string) => {
     setDragedItemId(id);
   };
 
   const handleDrop = () => {
-    const newItem = LIST.find(item => item.id === dragedItemId);
-    if (newItem) {
-      setExperimentalItemList(prevValue => ([
-        ...prevValue, 
-        ...[newItem],
-      ]))
+    if (experimentalItemList.length >= 2) {
+      setMessage(['You have reached the maximum of the samples you have selected!','Continue mixing the samples or remove them from the experimental table.']);
+      console.log(message)
+    } else {
+      const newItem = DATA.find(item => item.id === dragedItemId);
+      if (newItem) {
+        setExperimentalItemList(prevValue => ([
+          ...prevValue, 
+          ...[newItem],
+        ]))
+      }
     }
   };
 
@@ -67,20 +42,33 @@ function App() {
     setExperimentalItemList(array);
   };
 
+  const getReaction = () => {
+    console.log('reaction is: ');
+  };
+
   return (
     <div className="App">
       <h2>Drag and Drop app!</h2>
       <div className='items-list'>
-        {LIST.map(item => (
+        {DATA.map(item => (
           <Item
             key={item.id}
             name={item.name}
+            image={item.image}
             selected={experimentalItemList.find(experimentItem => experimentItem.id === item.id) ? true : false}
-            onDrag={(e) => dragStart(e, item.id)}
+            onDrag={(e) => dragStart(item.id)}
           />
         ))}
       </div>
-      <ExperimantalTable itemList={experimentalItemList} onDrop={handleDrop} onCanceld={handleUnselect}/>
+      {message && message.length > 0 && (
+        <Message message={message} onClose={() => setMessage([])} />
+      )}
+      <ExperimantalTable
+        itemList={experimentalItemList}
+        onDrop={handleDrop}
+        onCanceld={handleUnselect}
+        onMix={getReaction}
+      />
     </div>
   );
 }

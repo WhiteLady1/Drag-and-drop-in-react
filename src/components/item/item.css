@@ -1,6 +1,7 @@
 .item {
   display: flex;
   flex-direction: column;
+  align-items: center;
   cursor: pointer;
 }
 
@@ -22,6 +23,8 @@
 }
 
 .item__name {
+  max-width: 100px;
   margin-top: 5px;
   color: whitesmoke;
+  text-align: center;
 }

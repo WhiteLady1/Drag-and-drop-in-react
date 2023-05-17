@@ -2,17 +2,20 @@ import React from 'react';
 import './experimental-table.css';
 import { ListItem } from '../../App';
 import { Item } from '../item';
+import { ReasultCard } from '../result-card';
 
 interface ExperimentalTableProps {
   itemList: ListItem[];
   onDrop: () => void;
   onCanceld: (id: string) => void;
+  onMix: () => void;
 };
 
 export const ExperimantalTable: React.FC<ExperimentalTableProps> = ({
   itemList,
   onDrop,
-  onCanceld
+  onCanceld,
+  onMix
 }) => {
   const [dragEntered, setDragEntered] = React.useState(false);
   const [mix, setMix] = React.useState(false);
@@ -27,6 +30,11 @@ export const ExperimantalTable: React.FC<ExperimentalTableProps> = ({
     setDragEntered(false);
   };
 
+  const handeleMix = () => {
+    setMix(!mix);
+    onMix();
+  };
+
   return (
     <div
       className={dragEntered ? 'experimental-table experimental-table--entered' : 'experimental-table'}
@@ -37,14 +45,20 @@ export const ExperimantalTable: React.FC<ExperimentalTableProps> = ({
     >
       <div className='experimental-table__indredients-wrapper'>
         {itemList.map(item => (
-          <Item key={item.id} name={item.name} selected onCanceld={() => onCanceld(item.id)}/>
+          <Item
+            key={item.id}
+            name={item.name}
+            image={item.image}
+            selected
+            onCanceld={() => onCanceld(item.id)}
+          />
         ))}
       </div>
       {itemList.length === 2 && (
-        <button onClick={() => setMix(!mix)}>Mix</button>
+        <button onClick={handeleMix}>Mix</button>
       )}
       {mix && (
-        <div>Result</div>
+        <ReasultCard reaction='' />
       )}
     </div>
   );
