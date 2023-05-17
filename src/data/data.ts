@@ -1,11 +1,17 @@
+import { REACTIONS } from '../components';
+
 import bleach from '../assets/bleach.png';
 import ammonia from '../assets/ammonia.png';
 import vinegar from '../assets/vinegar.png';
 import ovenCleaner from '../assets/oven-cleaner.png';
-import glassCleaner from '../assets/glass-cleaner.jpg';
-import toiletCleaner from '../assets/toilet-cleaner.jpeg';
+import glassCleaner from '../assets/glass-cleaner.png';
+import toiletCleaner from '../assets/toilet-cleaner.png';
 import drainCleaner from '../assets/drain-cleaner.webp';
-import allPurposeCleaner from '../assets/all-purpose-cleaner.jpg';
+import allPurposeCleaner from '../assets/all-purpose-cleaner.png';
+import explosion from '../assets/explosion-static.png';
+import corrosive from '../assets/corosive.png';
+import poisonGas from '../assets/poison-gas.png';
+import neutral from '../assets/neutral.png';
 
 interface Reactions {
   explosion: string[];
@@ -13,7 +19,14 @@ interface Reactions {
   corrosive: string[];
 };
 
-interface CleaningProducts {
+interface ReactionsData {
+  id: REACTIONS;
+  name: string;
+  images: string;
+  description: string;
+};
+
+export interface CleaningProducts {
   id: string;
   name: string;
   image: string;
@@ -100,5 +113,32 @@ export const CLEANING_PRODUCTS: CleaningProducts[] = [
       poisonGas: [ 'Glass Cleaner'],
       corrosive: ['Bleach', 'Drain Cleaner', 'Vinegar', 'Glass Cleaner', 'Toilet Bowl Cleaner']
     }
+  }
+];
+
+export const REACTIONS_DATA: ReactionsData[] = [
+  {
+    id: 'explosion',
+    name: 'Explosion',
+    images: explosion,
+    description: 'You are dead...'
+  },
+  {
+    id: 'corrosive',
+    name: 'Corrosive',
+    images: corrosive,
+    description: 'You are dead...'
+  },
+  {
+    id: 'poison-gas',
+    name: 'Poison gas',
+    images: poisonGas,
+    description: 'You are dead...'
+  },
+  {
+    id: 'neutral',
+    name: 'Neutral',
+    images: neutral,
+    description: 'You survived!!!'
   }
 ];

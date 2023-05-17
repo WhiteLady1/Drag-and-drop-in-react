@@ -1,19 +1,13 @@
 import React from 'react';
-import { ExperimantalTable, Item, Message } from './components';
-import { CLEANING_PRODUCTS } from './data/data';
+import { ExperimantalTable, Item, Message, REACTIONS } from './components';
+import { CLEANING_PRODUCTS, CleaningProducts } from './data/data';
 import './App.css';
-
-export interface ListItem {
-  id: string;
-  name: string;
-  image: string;
-};
 
 const DATA = [...CLEANING_PRODUCTS];
 
 function App() {
   const [dragedItemId, setDragedItemId] = React.useState<string>();
-  const [experimentalItemList, setExperimentalItemList] = React.useState<ListItem[]>([]);
+  const [experimentalItemList, setExperimentalItemList] = React.useState<CleaningProducts[]>([]);
   const [message, setMessage] = React.useState<string[]>([]);
 
   const dragStart = (id: string) => {
@@ -42,33 +36,48 @@ function App() {
     setExperimentalItemList(array);
   };
 
-  const getReaction = () => {
-    console.log('reaction is: ');
+  const mixExperimentalSamples = () :REACTIONS => {
+    if (experimentalItemList[0].reactions.corrosive.find(reaction => reaction === experimentalItemList[1].name)) {
+      return 'corrosive';
+    } else if (experimentalItemList[0].reactions.explosion.find(reaction => reaction === experimentalItemList[1].name)) {
+      return 'explosion';
+    } else if (experimentalItemList[0].reactions.poisonGas.find(reaction => reaction === experimentalItemList[1].name)) {
+      return 'poison-gas';
+    } else {
+      return 'neutral';
+    };
+  };
+
+  const cleanExperimentalTable = () => {
+    setExperimentalItemList([]);
   };
 
   return (
     <div className="App">
       <h2>Drag and Drop app!</h2>
-      <div className='items-list'>
-        {DATA.map(item => (
-          <Item
-            key={item.id}
-            name={item.name}
-            image={item.image}
-            selected={experimentalItemList.find(experimentItem => experimentItem.id === item.id) ? true : false}
-            onDrag={(e) => dragStart(item.id)}
-          />
+      <div className='experiment-wrapper'>
+        {DATA.map((item, index) => (
+          <div className={`experiment-sampel experiment-sampel${index}`}>
+            <Item
+              key={item.id}
+              name={item.name}
+              image={item.image}
+              selected={experimentalItemList.find(experimentItem => experimentItem.id === item.id) ? true : false}
+              onDrag={(e) => dragStart(item.id)}
+            />
+          </div>
         ))}
+        <ExperimantalTable
+          itemList={experimentalItemList}
+          onDrop={handleDrop}
+          onCanceld={handleUnselect}
+          onClose={cleanExperimentalTable}
+          onMix={mixExperimentalSamples}
+        />
       </div>
       {message && message.length > 0 && (
         <Message message={message} onClose={() => setMessage([])} />
       )}
-      <ExperimantalTable
-        itemList={experimentalItemList}
-        onDrop={handleDrop}
-        onCanceld={handleUnselect}
-        onMix={getReaction}
-      />
     </div>
   );
 }

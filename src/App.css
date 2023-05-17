@@ -1,6 +1,7 @@
 .App {
   display: flex;
   flex-direction: column;
+  position: relative;
   width: 100vw;
   height: 100vh;
   color: white;
@@ -8,10 +9,60 @@
   background-color: rgb(72, 119, 110);
 }
 
-.items-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+.experiment-wrapper {
+  display: grid;
+  grid-template-columns: repeat(5, auto);
+  grid-template-rows: repeat(5, auto);
+  justify-content: center;
+  align-items: center;
   margin: 0 auto;
-  width: 500px;
 }
+
+.experiment-sampel0 {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.experiment-sampel1 {
+  position: relative;
+  top: 90px;
+  grid-column: 3;
+  grid-row: 1;
+}
+
+.experiment-sampel2 {
+  grid-column: 4;
+  grid-row: 2;
+}
+
+.experiment-sampel3 {
+  position: relative;
+  left: 30px;
+  grid-column: 1;
+  grid-row: 3;
+}
+
+.experiment-sampel4 {
+  position: relative;
+  right: 30px;
+  grid-column: 5;
+  grid-row: 3;
+}
+
+.experiment-sampel5 {
+  grid-column: 2;
+  grid-row: 4;
+}
+
+.experiment-sampel6 {
+  position: relative;
+  bottom: 90px;
+  grid-column: 3;
+  grid-row: 5;
+}
+
+.experiment-sampel7 {
+  grid-column: 4;
+  grid-row: 4;
+}
+

@@ -1,24 +1,27 @@
 import React from 'react';
 import './experimental-table.css';
-import { ListItem } from '../../App';
 import { Item } from '../item';
-import { ReasultCard } from '../result-card';
+import { REACTIONS, ReasultCard } from '../result-card';
+import { CleaningProducts } from '../../data/data';
 
 interface ExperimentalTableProps {
-  itemList: ListItem[];
+  itemList: CleaningProducts[];
   onDrop: () => void;
   onCanceld: (id: string) => void;
-  onMix: () => void;
+  onClose: () => void;
+  onMix: () => REACTIONS;
 };
 
 export const ExperimantalTable: React.FC<ExperimentalTableProps> = ({
   itemList,
   onDrop,
   onCanceld,
+  onClose,
   onMix
 }) => {
   const [dragEntered, setDragEntered] = React.useState(false);
   const [mix, setMix] = React.useState(false);
+  const [reaction, setReaction] = React.useState<REACTIONS>('neutral');
 
   const handelDragOver = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
@@ -31,8 +34,13 @@ export const ExperimantalTable: React.FC<ExperimentalTableProps> = ({
   };
 
   const handeleMix = () => {
+    setReaction(onMix());
     setMix(!mix);
-    onMix();
+  };
+
+  const handleClose = () => {
+    setMix(!mix);
+    onClose();
   };
 
   return (
@@ -55,10 +63,10 @@ export const ExperimantalTable: React.FC<ExperimentalTableProps> = ({
         ))}
       </div>
       {itemList.length === 2 && (
-        <button onClick={handeleMix}>Mix</button>
+        <button className='experimental-table__button' onClick={handeleMix}>Mix</button>
       )}
       {mix && (
-        <ReasultCard reaction='' />
+        <ReasultCard reaction={reaction} onClose={handleClose} />
       )}
     </div>
   );

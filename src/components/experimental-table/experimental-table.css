@@ -1,4 +1,6 @@
 .experimental-table {
+  grid-column: 3;
+  grid-row: 3;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -6,7 +8,6 @@
   gap: 10px;
   width: 300px;
   height: 300px;
-  margin: 50px auto;
   background-color: rgb(48, 79, 74);
   border-radius: 50%;
   border: 5px solid rgb(33, 55, 51);
@@ -21,4 +22,18 @@
 .experimental-table__indredients-wrapper {
   display: flex;
   gap: 10px;
+}
+
+.experimental-table__button {
+  border: 3px solid rgb(78, 2, 2);
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-color: red;
+  cursor: pointer;
+  transition: transform .2s;
+}
+
+.experimental-table__button:hover {
+  transform: scale(95%);
 }

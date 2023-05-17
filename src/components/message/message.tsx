@@ -13,8 +13,8 @@ export const Message: React.FC<MessageProps> = ({
   <div className='message'>
     <h3>{message[0]}</h3>
     {message.length > 1 && (
-      message.slice(1).map(item => (
-        <p>{item}</p>
+      message.slice(1).map((item, index) => (
+        <p key={index}>{item}</p>
       ))
     )}
     <button onClick={onClose}>Close</button>
