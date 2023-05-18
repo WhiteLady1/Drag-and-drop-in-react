@@ -1,5 +1,3 @@
-import { REACTIONS } from '../components';
-
 import bleach from '../assets/bleach.png';
 import ammonia from '../assets/ammonia.png';
 import vinegar from '../assets/vinegar.png';
@@ -13,13 +11,15 @@ import corrosive from '../assets/corosive.png';
 import poisonGas from '../assets/poison-gas.png';
 import neutral from '../assets/neutral.png';
 
+type REACTIONS = 'corrosive' | 'explosion' | 'poison-gas' | 'neutral';
+
 interface Reactions {
   explosion: string[];
   poisonGas: string[];
   corrosive: string[];
 };
 
-interface ReactionsData {
+export interface ReactionsData {
   id: REACTIONS;
   name: string;
   images: string;
@@ -125,7 +125,7 @@ export const REACTIONS_DATA: ReactionsData[] = [
   },
   {
     id: 'corrosive',
-    name: 'Corrosive',
+    name: 'Sorrel',
     images: corrosive,
     description: 'You are dead...'
   },

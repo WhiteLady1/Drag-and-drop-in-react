@@ -1,6 +1,11 @@
 import React from 'react';
-import { ExperimantalTable, Item, Message, REACTIONS } from './components';
-import { CLEANING_PRODUCTS, CleaningProducts } from './data/data';
+import { ExperimantalTable, Item, Message } from './components';
+import {
+  CLEANING_PRODUCTS,
+  CleaningProducts,
+  REACTIONS_DATA,
+  ReactionsData
+} from './data/data';
 import './App.css';
 
 const DATA = [...CLEANING_PRODUCTS];
@@ -8,6 +13,7 @@ const DATA = [...CLEANING_PRODUCTS];
 function App() {
   const [dragedItemId, setDragedItemId] = React.useState<string>();
   const [experimentalItemList, setExperimentalItemList] = React.useState<CleaningProducts[]>([]);
+  const [reaction, setReaction] = React.useState<ReactionsData>(REACTIONS_DATA[3]);
   const [message, setMessage] = React.useState<string[]>([]);
 
   const dragStart = (id: string) => {
@@ -16,8 +22,10 @@ function App() {
 
   const handleDrop = () => {
     if (experimentalItemList.length >= 2) {
-      setMessage(['You have reached the maximum of the samples you have selected!','Continue mixing the samples or remove them from the experimental table.']);
-      console.log(message)
+      setMessage([
+        'You have reached the maximum of the samples you have selected!',
+        'Continue mixing the samples or remove them from the experimental table.'
+      ]);
     } else {
       const newItem = DATA.find(item => item.id === dragedItemId);
       if (newItem) {
@@ -36,7 +44,7 @@ function App() {
     setExperimentalItemList(array);
   };
 
-  const mixExperimentalSamples = () :REACTIONS => {
+  const mixExperimentalSamples = () => {
     if (experimentalItemList[0].reactions.corrosive.find(reaction => reaction === experimentalItemList[1].name)) {
       return 'corrosive';
     } else if (experimentalItemList[0].reactions.explosion.find(reaction => reaction === experimentalItemList[1].name)) {
@@ -45,6 +53,13 @@ function App() {
       return 'poison-gas';
     } else {
       return 'neutral';
+    };
+  };
+
+  const getReaction = () => {
+    const reaction = REACTIONS_DATA.find(item => item.id === mixExperimentalSamples())
+    if (reaction) {
+      setReaction(reaction);
     };
   };
 
@@ -57,22 +72,22 @@ function App() {
       <h2>Drag and Drop app!</h2>
       <div className='experiment-wrapper'>
         {DATA.map((item, index) => (
-          <div className={`experiment-sampel experiment-sampel${index}`}>
+          <div key={item.id} className={`experiment-sampel experiment-sampel${index}`}>
             <Item
-              key={item.id}
               name={item.name}
               image={item.image}
               selected={experimentalItemList.find(experimentItem => experimentItem.id === item.id) ? true : false}
-              onDrag={(e) => dragStart(item.id)}
+              onDrag={() => dragStart(item.id)}
             />
           </div>
         ))}
         <ExperimantalTable
           itemList={experimentalItemList}
+          reaction={reaction}
           onDrop={handleDrop}
           onCanceld={handleUnselect}
           onClose={cleanExperimentalTable}
-          onMix={mixExperimentalSamples}
+          onMix={getReaction}
         />
       </div>
       {message && message.length > 0 && (

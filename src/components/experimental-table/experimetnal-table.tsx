@@ -1,19 +1,21 @@
 import React from 'react';
-import './experimental-table.css';
 import { Item } from '../item';
-import { REACTIONS, ReasultCard } from '../result-card';
-import { CleaningProducts } from '../../data/data';
+import { ReasultCard } from '../result-card';
+import { CleaningProducts, ReactionsData } from '../../data/data';
+import './experimental-table.css';
 
 interface ExperimentalTableProps {
   itemList: CleaningProducts[];
+  reaction: ReactionsData;
   onDrop: () => void;
   onCanceld: (id: string) => void;
   onClose: () => void;
-  onMix: () => REACTIONS;
+  onMix: () => void;
 };
 
 export const ExperimantalTable: React.FC<ExperimentalTableProps> = ({
   itemList,
+  reaction,
   onDrop,
   onCanceld,
   onClose,
@@ -21,11 +23,9 @@ export const ExperimantalTable: React.FC<ExperimentalTableProps> = ({
 }) => {
   const [dragEntered, setDragEntered] = React.useState(false);
   const [mix, setMix] = React.useState(false);
-  const [reaction, setReaction] = React.useState<REACTIONS>('neutral');
 
   const handelDragOver = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
-    console.log('droped');
   };
 
   const handleDrop = () => {
@@ -34,7 +34,7 @@ export const ExperimantalTable: React.FC<ExperimentalTableProps> = ({
   };
 
   const handeleMix = () => {
-    setReaction(onMix());
+    onMix();
     setMix(!mix);
   };
 

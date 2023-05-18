@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   position: relative;
+  overflow: hidden;
   width: 100vw;
   height: 100vh;
   color: white;
@@ -25,9 +26,10 @@
 
 .experiment-sampel1 {
   position: relative;
-  top: 90px;
+  top: 30px;
   grid-column: 3;
   grid-row: 1;
+  height: 100px;
 }
 
 .experiment-sampel2 {
@@ -65,4 +67,3 @@
   grid-column: 4;
   grid-row: 4;
 }
-
