@@ -8,7 +8,7 @@ interface MessageProps {
 
 export const Message: React.FC<MessageProps> = ({
   message,
-  onClose
+  onClose,
 }) => (
   <div className='message'>
     <div className='message__wrapper'>

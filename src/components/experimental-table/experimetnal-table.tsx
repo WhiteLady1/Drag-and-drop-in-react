@@ -1,5 +1,5 @@
 import React from 'react';
-import { Item } from '../item';
+import { Sample } from '../sample/sample';
 import { ReasultCard } from '../result-card';
 import { CleaningProducts, ReactionsData } from '../../data/data';
 import './experimental-table.css';
@@ -19,7 +19,7 @@ export const ExperimantalTable: React.FC<ExperimentalTableProps> = ({
   onDrop,
   onCanceld,
   onClose,
-  onMix
+  onMix,
 }) => {
   const [dragEntered, setDragEntered] = React.useState(false);
   const [mix, setMix] = React.useState(false);
@@ -53,7 +53,7 @@ export const ExperimantalTable: React.FC<ExperimentalTableProps> = ({
     >
       <div className='experimental-table__indredients-wrapper'>
         {itemList.map(item => (
-          <Item
+          <Sample
             key={item.id}
             name={item.name}
             image={item.image}

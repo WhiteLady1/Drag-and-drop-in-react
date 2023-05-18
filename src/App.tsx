@@ -1,5 +1,9 @@
 import React from 'react';
-import { ExperimantalTable, Item, Message } from './components';
+import {
+  ExperimantalTable,
+  Sample,
+  Message
+} from './components';
 import {
   CLEANING_PRODUCTS,
   CleaningProducts,
@@ -73,7 +77,7 @@ function App() {
       <div className='experiment-wrapper'>
         {DATA.map((item, index) => (
           <div key={item.id} className={`experiment-sampel experiment-sampel${index}`}>
-            <Item
+            <Sample
               name={item.name}
               image={item.image}
               selected={experimentalItemList.find(experimentItem => experimentItem.id === item.id) ? true : false}

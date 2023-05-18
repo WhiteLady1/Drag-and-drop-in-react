@@ -1,20 +1,20 @@
 import React from 'react';
-import './item.css';
+import './sample.css';
 
 export interface ItemProps {
   name: string;
   image: string;
   selected?: boolean;
-  onDrag?: (e: React.DragEvent<HTMLDivElement>) => void;
+  onDrag?: () => void;
   onCanceld?: () => void;
 };
 
-export const Item: React.FC<ItemProps> = ({
+export const Sample: React.FC<ItemProps> = ({
   name,
   image,
   selected = false,
-  onDrag,
-  onCanceld
+  onDrag = () => {},
+  onCanceld = () => {},
 }) => {
   return (
     <div
