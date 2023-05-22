@@ -1,6 +1,6 @@
 import React from 'react';
 import './result-card.css';
-import { ReactionsData } from '../../data/data';
+import { ReactionsData } from '../../data/experimental-data';
 
 interface ReasultCardProps {
   reaction: ReactionsData;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Sample } from '../sample/sample';
 import { ReasultCard } from '../result-card';
-import { CleaningProducts, ReactionsData } from '../../data/data';
+import { CleaningProducts, ReactionsData } from '../../data/experimental-data';
 import './experimental-table.css';
 
 interface ExperimentalTableProps {

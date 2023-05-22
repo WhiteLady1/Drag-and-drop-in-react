@@ -1,0 +1,79 @@
+.experiment {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  color: white;
+  text-align: center;
+  background-color: rgb(72, 119, 110);
+}
+
+.experiment__link {
+  color: black;
+  font-size: 12px;
+  text-decoration: none;
+}
+
+.experiment__link:hover {
+  text-decoration: underline;
+}
+
+.experiment-wrapper {
+  display: grid;
+  grid-template-columns: repeat(5, auto);
+  grid-template-rows: repeat(5, auto);
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.experiment-sampel0 {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.experiment-sampel1 {
+  position: relative;
+  top: 30px;
+  grid-column: 3;
+  grid-row: 1;
+  height: 100px;
+}
+
+.experiment-sampel2 {
+  grid-column: 4;
+  grid-row: 2;
+}
+
+.experiment-sampel3 {
+  position: relative;
+  left: 30px;
+  grid-column: 1;
+  grid-row: 3;
+}
+
+.experiment-sampel4 {
+  position: relative;
+  right: 30px;
+  grid-column: 5;
+  grid-row: 3;
+}
+
+.experiment-sampel5 {
+  grid-column: 2;
+  grid-row: 4;
+}
+
+.experiment-sampel6 {
+  position: relative;
+  bottom: 90px;
+  grid-column: 3;
+  grid-row: 5;
+}
+
+.experiment-sampel7 {
+  grid-column: 4;
+  grid-row: 4;
+}
