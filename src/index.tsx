@@ -5,6 +5,7 @@ import App from './App';
 import { ExperimentPage, ToDoPage } from './pages';
 
 import './index.css';
+import { Puzzle } from './pages/puzzle-page';
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
   {
     path: 'todo-list',
     element: <ToDoPage />,
+  },
+  {
+    path: 'puzzle',
+    element: <Puzzle />,
   }
 ]);
 
