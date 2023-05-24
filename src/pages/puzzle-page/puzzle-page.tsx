@@ -1,10 +1,17 @@
 import React from 'react';
+import {
+  Difficulty,
+  DifficultyLevel,
+  Message,
+  PuzzlePiece
+} from '../../components';
+
 import { PUZZLE } from '../../data/puzzle';
-import { Difficulty, DifficultyLevel, Message, PuzzlePiece } from '../../components';
 import dome from '../../assets/puzzle/dome.jpg';
 import forest from '../../assets/puzzle/skog.jpg';
 import mask from '../../assets/puzzle/wp.jpg';
-import './puzzle-page.css';
+
+import './puzzle-page.scss';
 
 const randomSort = (array: string[]) => {
   const unSortedArray = [...array]
@@ -48,15 +55,22 @@ export const Puzzle = () => {
     } else return dome;
   };
 
+  const getLevelColor = (level: DifficultyLevel | undefined) => {
+    if (level === 'puzzle-mask') return 'puzzle-page puzzle-page--easy';
+    if (level === 'puzzle-forest') return 'puzzle-page puzzle-page--medium';
+    if (level === 'puzzle-sky') return 'puzzle-page puzzle-page--hard';
+    return 'puzzle-page';
+  };
+
   return (
-    <div className='puzzle-page'>
+    <div className={getLevelColor(difficulty)}>
       <h2 className='puzzle-page__title'>Puzzle</h2>
       <a className='puzzle-page__link' href='/'>Back home</a>
       <Difficulty onClick={setDifficulty} />
       {difficulty && (
-        <div className='puzzle-pages__wrapper'>
+        <div className='puzzle-page__wrapper'>
           <img className='puzzle-page__original-img' src={getOriginalPicture()} alt='Original' />
-          <div className='puzzle-images__wrapper'>
+          <div className='puzzle-page__images-wrapper'>
             {puzzleList.map((image, index) => (
               <PuzzlePiece
                 key={index}
@@ -76,6 +90,9 @@ export const Puzzle = () => {
           message={['Congratulations!', 'You put the whole picture together.']}
           onClose={() => setWin(false)}
         />
+      )}
+      {difficulty && (
+        <p className='puzzle-page__hint'>Open the console for help</p>
       )}
     </div>
   );

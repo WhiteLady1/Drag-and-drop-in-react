@@ -1,5 +1,5 @@
 import React from 'react';
-import './difficulty.css';
+import './difficulty.scss';
 
 const EASY = 'puzzle-mask';
 const MIDLE = 'puzzle-forest';
@@ -21,9 +21,9 @@ export const Difficulty: React.FC<DifficultyProps> = ({
 
   return (
     <div className='difficulty'>
-      <button onClick={() => handleClick(EASY)}>easy</button>
-      <button onClick={() => handleClick(MIDLE)}>midle</button>
-      <button onClick={() => handleClick(HARD)}>hard</button>
+      <button className='difficulty__button difficulty__button--easy' onClick={() => handleClick(EASY)}>easy</button>
+      <button className='difficulty__button difficulty__button--medium' onClick={() => handleClick(MIDLE)}>medium</button>
+      <button className='difficulty__button difficulty__button--hard' onClick={() => handleClick(HARD)}>hard</button>
     </div>
   );
 };

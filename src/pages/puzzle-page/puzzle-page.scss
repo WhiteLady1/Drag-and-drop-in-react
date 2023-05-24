@@ -1,0 +1,90 @@
+.puzzle-page {
+  $self: &;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #142601;
+  background-color: #F2F2F2;
+
+  &__link {
+    color: #142601;
+    font-size: 12px;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__original-img {
+    width: 620px;
+    height: 620px;
+  }
+
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px;
+  }
+
+  &__images-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+    width: 620px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    & img {
+      cursor: move;
+    }
+  }
+
+  &__hint {
+    margin-top: 0;
+    margin-bottom: 30px;
+    font-weight: 700;
+  }
+
+  &--easy {
+    color: #537324;
+    background-color: #EDF2C4;
+
+    #{ $self }__link {
+      color: #214001;
+    }
+
+    #{ $self }__hint {
+      color: #F2226E;
+    }
+  }
+
+  &--medium {
+    color: #3E4034;
+    background-color: #F2D7B6;
+
+    #{ $self }__link {
+      color: #3E4034;
+    }
+
+    #{ $self }__hint {
+      color: #3D2F59;
+    }
+  }
+
+  &--hard {
+    color: #3D3E40;
+    background-color: #F2E0D5;
+
+    #{ $self }__link {
+      color: #3D3E40;
+    }
+
+    #{ $self }__hint {
+      color: #1F2326;
+    }
+  }
+}
