@@ -2,10 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import App from './App';
-import { ExperimentPage, ToDoPage } from './pages';
+import { ExperimentPage, Puzzle, ToDoPage } from './pages';
 
 import './index.css';
-import { Puzzle } from './pages/puzzle-page';
 
 const router = createBrowserRouter([
   {
