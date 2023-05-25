@@ -1,7 +1,7 @@
 import React from 'react';
 import { Task } from '../../components';
 import { TODO_DATA } from '../../data/todo-list-data';
-import './todo-page.scss';
+import './todo.scss';
 
 export const ToDoPage = () => {
   const [data, setData] = React.useState([...TODO_DATA]);

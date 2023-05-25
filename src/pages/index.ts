@@ -1,3 +1,4 @@
 export * from './experiment';
-export * from './puzzle-page';
-export * from './todo-page';
+export * from './puzzle';
+export * from './todo';
+export * from './welcome';

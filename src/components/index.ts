@@ -6,3 +6,5 @@ export * from './message';
 export * from './puzzle-piece';
 export * from './result-card';
 export * from './task';
+export * from './user-card';
+export * from './user-result';

@@ -4,10 +4,15 @@
   align-items: center;
   gap: 20px;
   height: 100vh;
-  background-color: aliceblue;
+  background-color: #F2F0EB;
+
+  &__title {
+    margin-top: 50px;
+    color: #8C452B;
+  }
 
   &__link {
-    color: black;
+    color: #8C452B;
     font-size: 12px;
     text-decoration: none;
 

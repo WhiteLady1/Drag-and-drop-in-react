@@ -11,7 +11,7 @@ import dome from '../../assets/puzzle/dome.jpg';
 import forest from '../../assets/puzzle/skog.jpg';
 import mask from '../../assets/puzzle/wp.jpg';
 
-import './puzzle-page.scss';
+import './puzzle.scss';
 
 const randomSort = (array: string[]) => {
   const unSortedArray = [...array]

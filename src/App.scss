@@ -5,10 +5,17 @@
   align-items: center;
   width: 100vw;
   height: 100vh;
-  background-color: aliceblue;
+  background-color: #F2F0EB;
+
+  &__user-card {
+    position: absolute;
+    top: 0;
+    left: 20px;
+  }
 
   &__title {
     margin-bottom: 80px;
+    color: #8C452B;
   }
 
   &__wrapper {
@@ -18,8 +25,8 @@
 
     &__button {
       padding: 10px 20px;
-      background-color: rgb(129, 214, 217);
-      color: white;
+      background-color: #F2C0A2;
+      color: #8C452B;
       font-weight: 700;
       text-align: center;
       text-decoration: none;
@@ -38,6 +45,7 @@
     & img {
       width: 40px;
       height: 40px;
+      filter: invert(26%) sepia(99%) saturate(420%) hue-rotate(330deg) brightness(94%) contrast(87%);
       transition: transform .2s;
 
       &:hover {

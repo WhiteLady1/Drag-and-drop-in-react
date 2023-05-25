@@ -12,15 +12,15 @@
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    background-color: gainsboro;
-    border: 5px solid whitesmoke;
+    background-color: #F2F0EB;
+    border: 5px solid #8C452B;
     transition: transform .3s;
   }
 
   &__name {
     max-width: 100px;
     margin-top: 5px;
-    color: whitesmoke;
+    color: #8C452B;
     text-align: center;
   }
   
