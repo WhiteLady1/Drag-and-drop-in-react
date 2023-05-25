@@ -1,0 +1,31 @@
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+
+  &:hover .item__icon {
+    transform: scale(95%);
+  }
+
+  &__icon {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: gainsboro;
+    border: 5px solid whitesmoke;
+    transition: transform .3s;
+  }
+
+  &__name {
+    max-width: 100px;
+    margin-top: 5px;
+    color: whitesmoke;
+    text-align: center;
+  }
+  
+}
+
+.item:hover.item--selected .item__icon {
+  transform: none;
+}

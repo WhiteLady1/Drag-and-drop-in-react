@@ -1,0 +1,24 @@
+.todo-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  height: 100vh;
+  background-color: aliceblue;
+
+  &__link {
+    color: black;
+    font-size: 12px;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+}

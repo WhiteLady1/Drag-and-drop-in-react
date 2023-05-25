@@ -2,7 +2,7 @@ import React from 'react';
 import { Sample } from '../sample/sample';
 import { ReasultCard } from '../result-card';
 import { CleaningProducts, ReactionsData } from '../../data/experimental-data';
-import './experimental-table.css';
+import './experimental-table.scss';
 
 interface ExperimentalTableProps {
   itemList: CleaningProducts[];

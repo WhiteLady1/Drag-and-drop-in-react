@@ -8,16 +8,16 @@
   color: white;
   text-align: center;
   background-color: rgb(72, 119, 110);
-}
 
-.experiment__link {
-  color: black;
-  font-size: 12px;
-  text-decoration: none;
-}
+  &__link {
+    color: black;
+    font-size: 12px;
+    text-decoration: none;
 
-.experiment__link:hover {
-  text-decoration: underline;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }
 
 .experiment-wrapper {

@@ -11,7 +11,7 @@ import {
   ReactionsData
 } from '../../data/experimental-data';
 
-import './experiment-page.css';
+import './experiment-page.scss';
 
 const DATA = [...CLEANING_PRODUCTS];
 

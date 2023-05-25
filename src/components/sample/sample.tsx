@@ -1,5 +1,5 @@
 import React from 'react';
-import './sample.css';
+import './sample.scss';
 
 export interface ItemProps {
   name: string;

@@ -7,7 +7,6 @@ const HARD = 'puzzle-sky';
 
 export type DifficultyLevel = typeof EASY | typeof MIDLE | typeof HARD;
 
-
 interface DifficultyProps {
   onClick: (text: DifficultyLevel) => void;
 };

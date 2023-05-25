@@ -1,0 +1,13 @@
+.task {
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    max-width: 200px;
+    padding-left: 10px;
+    padding-right: 20px;
+    background-color: rgb(129, 214, 217);
+    border-radius: 10px;
+    cursor: move;
+  }
+}
