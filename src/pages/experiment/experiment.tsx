@@ -77,6 +77,14 @@ export const Experiment = () => {
       <h2>Chemical experiment</h2>
       <a className='experiment__link' href='/'>Home</a>
       <div className='experiment-wrapper'>
+        <ExperimantalTable
+          itemList={experimentalItemList}
+          reaction={reaction}
+          onDrop={handleDrop}
+          onCanceld={handleUnselect}
+          onClose={cleanExperimentalTable}
+          onMix={getReaction}
+        />
         {DATA.map((item, index) => (
           <div key={item.id} className={`experiment-sampel experiment-sampel${index}`}>
             <Sample
@@ -87,14 +95,6 @@ export const Experiment = () => {
             />
           </div>
         ))}
-        <ExperimantalTable
-          itemList={experimentalItemList}
-          reaction={reaction}
-          onDrop={handleDrop}
-          onCanceld={handleUnselect}
-          onClose={cleanExperimentalTable}
-          onMix={getReaction}
-        />
       </div>
       {message && message.length > 0 && (
         <Message message={message} onClose={() => setMessage([])} />
