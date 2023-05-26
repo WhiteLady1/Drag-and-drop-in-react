@@ -1,18 +1,26 @@
 .experimental-table {
-  grid-column: 3;
-  grid-row: 3;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 10px;
   width: 300px;
-  height: 300px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   background-color: #BF784E;
   border: 5px solid #8C452B;
-  border-radius: 50%;
-  transition: transform .2s;
-  overflow: hidden;
+  border-radius: 20px;
+
+  @media screen and (min-width: 750px) {
+    grid-column: 3;
+    grid-row: 3;
+    height: 300px;
+    padding-top: unset;
+    padding-bottom: unset;
+    border-radius: 50%;
+    transition: transform .2s;
+    overflow: hidden;
+  }
 
   &--entered {
     transform: scale(105%);
