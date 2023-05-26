@@ -50,6 +50,7 @@ export const ExperimantalTable: React.FC<ExperimentalTableProps> = ({
       onDragLeave={() => setDragEntered(false)}
       onDragOver={handelDragOver}
       onDrop={handleDrop}
+      onTouchEnd={handleDrop}
     >
       <div className='experimental-table__indredients-wrapper'>
         {itemList.map(item => (

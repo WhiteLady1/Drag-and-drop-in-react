@@ -21,6 +21,7 @@ export const Sample: React.FC<ItemProps> = ({
       className={selected ? 'item item--selected' : 'item'}
       draggable={selected ? false : true}
       onDragStart={onDrag}
+      onTouchMove={onDrag}
       onClick={onCanceld}
     >
       <span className='item__icon' style={{
