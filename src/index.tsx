@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import App from './App';
-import { ExperimentPage, Puzzle, ToDoPage, Welcome } from './pages';
+import { Experiment, Puzzle, ToDoPage } from './pages';
 
 import './index.css';
 
@@ -13,7 +13,7 @@ const router = createBrowserRouter([
   },
   {
     path: 'experiment',
-    element: <ExperimentPage />,
+    element: <Experiment />,
   },
   {
     path: 'todo-list',
