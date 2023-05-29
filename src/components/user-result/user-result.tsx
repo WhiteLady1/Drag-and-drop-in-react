@@ -7,7 +7,7 @@ interface UserResultProps {
 
 export const UserResult = () => (
   <div className='user-result'>
-    <p>Game</p>
-    <p>lives</p>
+    <p className='user-result__title'>Game</p>
+    <p className='user-result__text'>lives</p>
   </div>
 );
