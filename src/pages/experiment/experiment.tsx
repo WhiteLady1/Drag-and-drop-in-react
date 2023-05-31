@@ -16,7 +16,7 @@ import './experiment.scss';
 const DATA = [...CLEANING_PRODUCTS];
 
 export const Experiment = () => {
-  const [dragedItemId, setDragedItemId] = React.useState<string>();
+  const [dragedItemId, setDragedItemId,] = React.useState<string>();
   const [experimentalItemList, setExperimentalItemList] = React.useState<CleaningProducts[]>([]);
   const [reaction, setReaction] = React.useState<ReactionsData>(REACTIONS_DATA[3]);
   const [message, setMessage] = React.useState<string[]>([]);
