@@ -1,0 +1,17 @@
+.select-sampels {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    &__select {
+      font-size: 25px;
+    }
+  }
+}

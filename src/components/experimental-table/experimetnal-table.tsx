@@ -7,8 +7,8 @@ import './experimental-table.scss';
 interface ExperimentalTableProps {
   itemList: CleaningProducts[];
   reaction: ReactionsData;
-  onDrop: () => void;
-  onCanceld: (id: string) => void;
+  onDrop?: () => void;
+  onRemove: (id: string) => void;
   onClose: () => void;
   onMix: () => void;
 };
@@ -16,8 +16,8 @@ interface ExperimentalTableProps {
 export const ExperimantalTable: React.FC<ExperimentalTableProps> = ({
   itemList,
   reaction,
-  onDrop,
-  onCanceld,
+  onDrop = () => {},
+  onRemove,
   onClose,
   onMix,
 }) => {
@@ -58,8 +58,9 @@ export const ExperimantalTable: React.FC<ExperimentalTableProps> = ({
             key={item.id}
             name={item.name}
             image={item.image}
+            forDevice='isDesktop'
             selected
-            onCanceld={() => onCanceld(item.id)}
+            onCanceld={() => onRemove(item.id)}
           />
         ))}
       </div>
