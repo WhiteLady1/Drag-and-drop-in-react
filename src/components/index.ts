@@ -5,7 +5,6 @@ export * from './puzzle-piece';
 export * from './result-card';
 export * from './sample';
 export * from './select-sampels';
-export * from './task';
 export * from './user-card';
 export * from './user-result';
 

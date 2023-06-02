@@ -102,7 +102,6 @@ export const Experiment = () => {
   };
 
   const getReaction = () => {
-    console.log(experimentalItemList);
     const reaction = REACTIONS_DATA.find(item => item.id === mixExperimentalSamples())
     if (reaction) {
       setReaction(reaction);
