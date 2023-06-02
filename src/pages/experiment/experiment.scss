@@ -1,15 +1,15 @@
 .experiment {
   display: flex;
   flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  color: #8C452B;
   text-align: center;
+  background-color: #F2F0EB;
 
   @media screen and (min-width: 750px) {
     position: relative;
     overflow: hidden;
-    width: 100vw;
-    height: 100vh;
-    color: #8C452B;
-    background-color: #F2F0EB;
   }
 
   &__link {

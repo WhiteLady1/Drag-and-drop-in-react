@@ -4,8 +4,8 @@ import { UserResult } from '../user-result';
 
 export const UserCard = () => {
   return (
-    <div>
-      <h3>Name</h3>
+    <div className='user-card'>
+      <h3 className='user-card__title'>Name</h3>
       <UserResult />
       <UserResult />
       <UserResult />
