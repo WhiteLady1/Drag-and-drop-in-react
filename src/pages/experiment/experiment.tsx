@@ -4,7 +4,8 @@ import {
   MobileExperiment,
   DEVICES,
   DesktopExperiment,
-  TabletExperiment
+  TabletExperiment,
+  Message
 } from '../../components';
 import {
   CLEANING_PRODUCTS,
@@ -24,18 +25,27 @@ export const Experiment = () => {
   const [experimentalItemList, setExperimentalItemList] = React.useState<CleaningProducts[]>([]);
   const [reaction, setReaction] = React.useState<ReactionsData>(REACTIONS_DATA[3]);
   const [message, setMessage] = React.useState<string[]>([]);
+  const [disabledMobileSelect, setDisabledMobileSelect] = React.useState(true);
 
   const handleDragStart = (id: string) => {
     setDragedItemId(id);
   };
 
-  const handleSelectSampel = (id: string) => {
-    const newItem = DATA.find(item => item.id === id);
+  const handleSelectSampel = (sampleId: string, produckId: string) => {
+    const list = [...experimentalItemList];
+    const sampleIndex = sampleId === 'sample1' ? 0 : 1;
+    const newItem = DATA.find(item => item.id === produckId);
     if (newItem) {
-      setExperimentalItemList(prevValue => ([
-        ...prevValue, 
-        ...[newItem],
-      ]))
+      if (list.length > 1) {
+        list.splice(sampleIndex, 1, newItem);
+        setExperimentalItemList(list);
+      } else {
+        setExperimentalItemList(prevValue => ([
+          ...prevValue, 
+          ...[newItem],
+        ]));
+        setDisabledMobileSelect(false);
+      }
     }
   };
 
@@ -54,7 +64,8 @@ export const Experiment = () => {
           setExperimentalItemList(prevValue => ([
             ...prevValue, 
             ...[newItem],
-          ]))
+          ]));
+          setDragedItemId(undefined);
         }
       }
     }
@@ -72,7 +83,8 @@ export const Experiment = () => {
         setExperimentalItemList(prevValue => ([
           ...prevValue, 
           ...[newItem],
-        ]))
+        ]));
+        setDragedItemId(undefined);
       }
     }
   };
@@ -135,6 +147,7 @@ export const Experiment = () => {
             samples={[...DATA.map(sampel => ({id: sampel.id, name: sampel.name}))]}
             itemList={experimentalItemList}
             reaction={reaction}
+            disabledSecondSelect={disabledMobileSelect}
             onSelectSampel={handleSelectSampel}
             onRemoveSampel={handleUnselect}
             onCleanTable={cleanExperimentalTable}
@@ -143,35 +156,33 @@ export const Experiment = () => {
         )}
         {device === 'isTablet' && (
           <TabletExperiment
-            sampels={DATA}
+            samples={DATA}
             itemList={experimentalItemList}
             reaction={reaction}
-            message={message}
             onTouchStart={handleDragStart}
-            onTouchMove={(e) => console.log('move', e)}
             onTouchEnd={handleTouchEnd}
             onTouchCancel={handleTouchCancel}
             onRemoveSampel={handleUnselect}
             onCleanTable={cleanExperimentalTable}
             onMix={getReaction}
-            onCloseMessage={() => setMessage([])}
           />
         )}
         {device === 'isDesktop' && (
           <DesktopExperiment
-            sampels={DATA}
+            samples={DATA}
             itemList={experimentalItemList}
             reaction={reaction}
-            message={message}
             onDragSampel={handleDragStart}
             onDropSampel={handleDrop}
             onRemoveSampel={handleUnselect}
             onCleanTable={cleanExperimentalTable}
-            onCloseMessage={() => setMessage([])}
             onMix={getReaction}
           />
         )}
       </div>
+        {message.length > 1 && (
+          <Message message={message} onClose={() => setMessage([])} />
+        )}
     </div>
   );
 };

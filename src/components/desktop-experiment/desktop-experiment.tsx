@@ -1,35 +1,30 @@
 import { CleaningProducts, ReactionsData } from "../../data/experimental-data"
 import { ExperimantalTable } from "../experimental-table";
-import { Message } from "../message";
 import { Sample } from "../sample";
 
 interface DesktopExperimentProps {
-  sampels: CleaningProducts[];
+  samples: CleaningProducts[];
   itemList: CleaningProducts[];
   reaction: ReactionsData;
-  message: string[],
   onDragSampel: (id: string) => void;
   onDropSampel: () => void;
   onRemoveSampel: (id: string) => void;
   onCleanTable: () => void;
   onMix: () => void;
-  onCloseMessage: () => void;
 };
 
 export const DesktopExperiment: React.FC<DesktopExperimentProps> = ({
-  sampels,
+  samples,
   itemList,
   reaction,
-  message,
   onDragSampel,
   onDropSampel,
   onRemoveSampel,
   onCleanTable,
   onMix,
-  onCloseMessage,
 }) => (
   <>
-    {sampels.map((sampel, index) => (
+    {samples.map((sampel, index) => (
       <div key={sampel.id} className={`experiment-sampel experiment-sampel${index}`}>
         <Sample
           name={sampel.name}
@@ -48,8 +43,5 @@ export const DesktopExperiment: React.FC<DesktopExperimentProps> = ({
       onClose={onCleanTable}
       onMix={onMix}
     />
-    {message.length > 1 && (
-      <Message message={message} onClose={onCloseMessage} />
-    )}
   </>
 );

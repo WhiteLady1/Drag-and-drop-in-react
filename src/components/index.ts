@@ -4,7 +4,7 @@ export * from './message';
 export * from './puzzle-piece';
 export * from './result-card';
 export * from './sample';
-export * from './select-sampels';
+export * from './select-samples';
 export * from './user-card';
 export * from './user-result';
 

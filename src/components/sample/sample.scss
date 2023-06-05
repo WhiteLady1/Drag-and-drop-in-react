@@ -4,6 +4,10 @@
   align-items: center;
   cursor: pointer;
 
+  &--in-motion {
+    position: absolute;
+  }
+
   &:hover .item__icon {
     transform: scale(95%);
   }
@@ -24,7 +28,6 @@
     font-weight: 700;
     text-align: center;
   }
-  
 }
 
 .item:hover.item--selected .item__icon {
