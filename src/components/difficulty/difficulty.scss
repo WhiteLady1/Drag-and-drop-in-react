@@ -14,8 +14,8 @@
     transition: transform .2s;
     cursor: pointer;
 
-    &:hover {
-      transform: scale(95%);
+    &--selected {
+      transform: scale(90%);
     }
 
     &--easy {
