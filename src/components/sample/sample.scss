@@ -16,15 +16,15 @@
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    background-color: #8c452ba5;
-    border: 5px solid #F2C0A2;
+    background-color: rgba(255, 255, 255, 0.507);
+    border: 5px solid #689BA6;
     transition: transform .3s;
   }
 
   &__name {
     max-width: 100px;
     margin-top: 5px;
-    color: #8C452B;
+    color: #BF3945;
     font-weight: 700;
     text-align: center;
   }

@@ -12,6 +12,7 @@ import forest from '../../assets/puzzle/skog.jpg';
 import mask from '../../assets/puzzle/wp.jpg';
 
 import './puzzle.scss';
+import { isDesktop, isMobile, isTablet } from 'react-device-detect';
 
 const randomSort = (array: string[]) => {
   const unSortedArray = [...array]
@@ -66,23 +67,55 @@ export const Puzzle = () => {
     <div className={getLevelColor(difficulty)}>
       <h2 className='puzzle-page__title'>Puzzle</h2>
       <a className='puzzle-page__link' href='/'>Back home</a>
-      <Difficulty onClick={setDifficulty} />
-      {difficulty && (
-        <div className='puzzle-page__wrapper'>
-          <img className='puzzle-page__original-img' src={getOriginalPicture()} alt='Original' />
-          <div className='puzzle-page__images-wrapper'>
-            {puzzleList.map((image, index) => (
-              <PuzzlePiece
-                key={index}
-                image={image}
-                sourceFile={difficulty}
-                onDragStart={(e) => dragItem.current = index}
-                onDragEnter={(e) => dragOverItem.current = index}
-                onDragOver={(e) => e.preventDefault()}
-                onDragEnd={handleSort}
-              />
-            ))}
-          </div>
+      {isTablet && (
+        <div className='puzzle-page__tablet-version'>
+          <Difficulty onClick={setDifficulty} />
+          {difficulty && (
+            <div className='puzzle-page__wrapper'>
+              <img className='puzzle-page__original-img' src={getOriginalPicture()} alt='Original' />
+              <div className='puzzle-page__images-wrapper'>
+                {puzzleList.map((image, index) => (
+                  <PuzzlePiece
+                    key={index}
+                    image={image}
+                    sourceFile={difficulty}
+                    onDragStart={(e) => dragItem.current = index}
+                    onDragEnter={(e) => dragOverItem.current = index}
+                    onDragOver={(e) => e.preventDefault()}
+                    onDragEnd={handleSort}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+      {isDesktop && (
+        <div className='puzzle-page__tablet-version'>
+          <Difficulty onClick={setDifficulty} />
+          {difficulty && (
+            <div className='puzzle-page__wrapper'>
+              <img className='puzzle-page__original-img' src={getOriginalPicture()} alt='Original' />
+              <div className='puzzle-page__images-wrapper'>
+                {puzzleList.map((image, index) => (
+                  <PuzzlePiece
+                    key={index}
+                    image={image}
+                    sourceFile={difficulty}
+                    onDragStart={(e) => dragItem.current = index}
+                    onDragEnter={(e) => dragOverItem.current = index}
+                    onDragOver={(e) => e.preventDefault()}
+                    onDragEnd={handleSort}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+      {isMobile && isTablet === false && (
+        <div className='puzzle-page__tablet-version'>
+          <p>Puzzle is not available for mobile devices</p>
         </div>
       )}
       {win && (

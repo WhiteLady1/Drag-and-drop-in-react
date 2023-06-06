@@ -6,8 +6,8 @@
   gap: 10px;
   width: 300px;
   height: 300px;
-  background-color: #BF784E;
-  border: 5px solid #8C452B;
+  background-color: #689BA6;
+  border: 5px solid rgba(255, 255, 255, 0.352);
   border-radius: 50%;
 
   @media screen and (min-width: 750px) {
@@ -31,7 +31,9 @@
     height: 30px;
     border: none;
     border-radius: 10px;
-    background-color: #F24738;
+    color: #C7D9D9;
+    font-weight: 700;
+    background-color: #BF3945;
     transition: transform .2s;
     cursor: pointer;
 

@@ -17,8 +17,8 @@
     align-items: center;
     width: 400px;
     height: 250px;
-    color: black;
-    background-color: white;
+    color: #BF3945;
+    background-color: #C7D9D9;
     border-radius: 10px;
 
     &__title {
@@ -38,6 +38,7 @@
       position: absolute;
       top: 20px;
       right: 20px;
+      color: #BF3945;
       border: none;
       background: none;
       transition-property: transform, color;

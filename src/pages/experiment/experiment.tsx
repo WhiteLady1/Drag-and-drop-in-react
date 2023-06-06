@@ -18,7 +18,6 @@ import './experiment.scss';
 
 const DATA = [...CLEANING_PRODUCTS];
 
-
 export const Experiment = () => {
   const [device, setDevice] = React.useState<DEVICES>('isDesktop');
   const [dragedItemId, setDragedItemId] = React.useState<string>();
