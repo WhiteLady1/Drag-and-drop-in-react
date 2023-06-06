@@ -7,6 +7,7 @@ import {
   ModalImg,
   PuzzlePiece
 } from '../../components/index';
+import { DnDContext } from '../..';
 
 import { PUZZLE } from '../../data/puzzle';
 import dome from '../../assets/puzzle/dome.jpg';
@@ -14,7 +15,6 @@ import forest from '../../assets/puzzle/skog.jpg';
 import mask from '../../assets/puzzle/wp.jpg';
 
 import './puzzle.scss';
-import { isDesktop, isMobile, isTablet } from 'react-device-detect';
 
 const randomSort = (array: string[]) => {
   const unSortedArray = [...array]
@@ -25,6 +25,8 @@ const randomSort = (array: string[]) => {
 };
 
 export const Puzzle = () => {
+  const dndData = React.useContext(DnDContext);
+  const device = dndData?.device;
   const dragItem = React.useRef<any>(null);
   const dragOverItem = React.useRef<any>(null);
 
@@ -71,7 +73,7 @@ export const Puzzle = () => {
       <h2 className='puzzle-page__title'>Puzzle</h2>
       <a className='puzzle-page__link' href='/'>Back home</a>
       <Difficulty selectedDificulty={difficulty} onClick={setDifficulty} />
-      {isTablet && (
+      {device === 'isTablet' && (
         <div className='puzzle-page__content'>
           {difficulty && (
             <>
@@ -96,7 +98,7 @@ export const Puzzle = () => {
           )}
         </div>
       )}
-      {isDesktop && (
+      {device === 'isDesktop' && (
         <div className='puzzle-page__content puzzle-page__content--desktop'>
           {difficulty && (
             <div className='puzzle-page__content__wrapper'>
@@ -118,7 +120,7 @@ export const Puzzle = () => {
           )}
         </div>
       )}
-      {isMobile && isTablet === false && (
+      {device === 'isMobile' && (
         <div className='puzzle-page__content'>
           <p>Puzzle is not available for mobile devices</p>
         </div>

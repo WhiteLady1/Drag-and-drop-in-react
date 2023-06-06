@@ -1,8 +1,6 @@
 import React from 'react';
-import { isMobile, isTablet } from 'react-device-detect';
 import {
   MobileExperiment,
-  DEVICES,
   DesktopExperiment,
   TabletExperiment,
   Message
@@ -13,13 +11,15 @@ import {
   REACTIONS_DATA,
   ReactionsData
 } from '../../data/experimental-data';
+import { DnDContext } from '../..';
 
 import './experiment.scss';
 
 const DATA = [...CLEANING_PRODUCTS];
 
 export const Experiment = () => {
-  const [device, setDevice] = React.useState<DEVICES>('isDesktop');
+  const dndData = React.useContext(DnDContext)
+  const device = dndData?.device;
   const [dragedItemId, setDragedItemId] = React.useState<string>();
   const [experimentalItemList, setExperimentalItemList] = React.useState<CleaningProducts[]>([]);
   const [reaction, setReaction] = React.useState<ReactionsData>(REACTIONS_DATA[3]);
@@ -122,19 +122,6 @@ export const Experiment = () => {
   const cleanExperimentalTable = () => {
     setExperimentalItemList([]);
   };
-
-  React.useEffect(() => {
-    const getDevice = (): DEVICES => {
-      if (isMobile && isTablet) {
-        return 'isTablet';
-      }
-      if (isMobile && isTablet === false) {
-        return 'isMobile';
-      }
-      return 'isDesktop';
-    };
-    setDevice(getDevice); 
-  }, [device]);
 
   return (
     <div className="experiment">
