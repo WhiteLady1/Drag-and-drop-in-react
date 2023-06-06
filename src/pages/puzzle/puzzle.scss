@@ -1,33 +1,39 @@
 .puzzle-page {
   $self: &;
-  height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  min-height: 100vh;
   color: #142601;
   background-color: #F2F2F2;
-
+  
   &__link {
     color: #142601;
     font-size: 12px;
     text-decoration: none;
-
+    
     &:hover {
       text-decoration: underline;
     }
   }
-
-  &__original-img {
-    width: 620px;
-    height: 620px;
-  }
-
-  &__wrapper {
+  
+  &__content {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    gap: 50px;
+
+    &__original-img {
+      width: 620px;
+      height: 620px;
+    }
+  
+    &__wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 50px;
+    }
   }
 
   &__images-wrapper {

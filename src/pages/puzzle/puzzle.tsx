@@ -1,10 +1,12 @@
 import React from 'react';
 import {
+  Button,
   Difficulty,
   DifficultyLevel,
   Message,
+  ModalImg,
   PuzzlePiece
-} from '../../components';
+} from '../../components/index';
 
 import { PUZZLE } from '../../data/puzzle';
 import dome from '../../assets/puzzle/dome.jpg';
@@ -29,6 +31,7 @@ export const Puzzle = () => {
   const [puzzleList, setPuzzleList] = React.useState(randomSort(PUZZLE));
   const [win, setWin] = React.useState(false);
   const [difficulty, setDifficulty] = React.useState<DifficultyLevel>();
+  const [openOriginalImg, setOpenOriginalImg] = React.useState(false);
 
 
   const handleSort = (e:React.DragEvent<HTMLElement>) => {
@@ -67,12 +70,15 @@ export const Puzzle = () => {
     <div className={getLevelColor(difficulty)}>
       <h2 className='puzzle-page__title'>Puzzle</h2>
       <a className='puzzle-page__link' href='/'>Back home</a>
+      <Difficulty selectedDificulty={difficulty} onClick={setDifficulty} />
       {isTablet && (
-        <div className='puzzle-page__tablet-version'>
-          <Difficulty onClick={setDifficulty} />
+        <div className='puzzle-page__content'>
           {difficulty && (
-            <div className='puzzle-page__wrapper'>
-              <img className='puzzle-page__original-img' src={getOriginalPicture()} alt='Original' />
+            <>
+              <Button text='Open original img' bgColor={difficulty} onClick={() => setOpenOriginalImg(!openOriginalImg)} />
+              {openOriginalImg && (
+                <ModalImg imgSrc={getOriginalPicture()} onClose={() => setOpenOriginalImg(false)} />
+              )}
               <div className='puzzle-page__images-wrapper'>
                 {puzzleList.map((image, index) => (
                   <PuzzlePiece
@@ -86,16 +92,15 @@ export const Puzzle = () => {
                   />
                 ))}
               </div>
-            </div>
+            </>
           )}
         </div>
       )}
       {isDesktop && (
-        <div className='puzzle-page__tablet-version'>
-          <Difficulty onClick={setDifficulty} />
+        <div className='puzzle-page__content puzzle-page__content--desktop'>
           {difficulty && (
-            <div className='puzzle-page__wrapper'>
-              <img className='puzzle-page__original-img' src={getOriginalPicture()} alt='Original' />
+            <div className='puzzle-page__content__wrapper'>
+              <img className='puzzle-page__content__original-img' src={getOriginalPicture()} alt='Original' />
               <div className='puzzle-page__images-wrapper'>
                 {puzzleList.map((image, index) => (
                   <PuzzlePiece
@@ -114,7 +119,7 @@ export const Puzzle = () => {
         </div>
       )}
       {isMobile && isTablet === false && (
-        <div className='puzzle-page__tablet-version'>
+        <div className='puzzle-page__content'>
           <p>Puzzle is not available for mobile devices</p>
         </div>
       )}

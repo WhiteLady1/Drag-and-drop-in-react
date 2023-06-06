@@ -6,7 +6,7 @@ import {
   DesktopExperiment,
   TabletExperiment,
   Message
-} from '../../components';
+} from '../../components/index';
 import {
   CLEANING_PRODUCTS,
   CleaningProducts,

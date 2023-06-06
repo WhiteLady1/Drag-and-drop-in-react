@@ -36,31 +36,5 @@
         outline: 2px solid #BF784E;
       }
     }
-
-    &__button {
-      padding: 10px 20px;
-      background-color: #F24738;
-      color: white;
-      font-weight: 700;
-      text-align: center;
-      text-decoration: none;
-      border: none;
-      border-radius: 10px;
-      transition: transform .2s;
-      cursor: pointer;
-  
-      &:hover {
-        transform: scale(95%);
-      }
-
-      &--disabled {
-        background-color: lightgrey;
-        cursor: not-allowed;
-
-        &:hover {
-          transform: none;
-        }
-      }
-    }
   }
 }
