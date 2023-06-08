@@ -1,19 +1,56 @@
-import { Button } from './components';
-import GitHubIcon from './assets/github.svg';
+import React from 'react';
+import { Route, Routes } from 'react-router-dom';
+import { isMobile, isTablet } from 'react-device-detect';
+import { Experiment, Puzzle, Home } from './pages';
+import { DEVICES } from './components';
 import './App.scss';
+
+type DeviceContextType = DEVICES;
+type UserContextType = {
+  name: string,
+  points: number,
+};
+
+type DnDContextType = {
+  device: DeviceContextType,
+  user: UserContextType,
+};
+
+const getDevice = (): DEVICES => {
+  if (isMobile && isTablet) {
+    return 'isTablet';
+  }
+  if (isMobile && isTablet === false) {
+    return 'isMobile';
+  }
+  return 'isDesktop';
+};
+
+export const DnDContext = React.createContext<DnDContextType | null>(null);
 
 
 function App() {
   return (
     <div className="app">
-      <h1 className='app__title'>Drag and drop demo</h1>
-      <div className='app__wrapper'>
-        <Button text='Puzzle' linkTo='/puzzle' />
-        <Button text='Chemical experiment' linkTo='/experiment' />
-      </div>
-      <a className='app__link' href='https://github.com/WhiteLady1/Drag-and-drop-in-react' target='_blank' rel='noopener noreferrer'>
-        <img src={GitHubIcon} alt='GitHub Icon' />
-      </a>
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route
+          path='experiment'
+          element={
+            <DnDContext.Provider value={{device: getDevice(), user: {name: 'Adam', points: 5}}}>
+              <Experiment />
+            </DnDContext.Provider>
+          }
+        />
+        <Route
+          path='puzzle'
+          element={
+            <DnDContext.Provider value={{device: getDevice(), user: {name: 'Adam', points: 5}}}>
+              <Puzzle />
+            </DnDContext.Provider>
+          }
+        />
+      </Routes>
     </div>
   );
 }

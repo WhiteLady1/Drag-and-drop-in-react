@@ -11,9 +11,9 @@ import {
   REACTIONS_DATA,
   ReactionsData
 } from '../../data/experimental-data';
-import { DnDContext } from '../..';
 
 import './experiment.scss';
+import { DnDContext } from '../../App';
 
 const DATA = [...CLEANING_PRODUCTS];
 

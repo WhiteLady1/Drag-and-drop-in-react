@@ -7,7 +7,6 @@ import {
   ModalImg,
   PuzzlePiece
 } from '../../components/index';
-import { DnDContext } from '../..';
 
 import { PUZZLE } from '../../data/puzzle';
 import dome from '../../assets/puzzle/dome.jpg';
@@ -15,6 +14,7 @@ import forest from '../../assets/puzzle/skog.jpg';
 import mask from '../../assets/puzzle/wp.jpg';
 
 import './puzzle.scss';
+import { DnDContext } from '../../App';
 
 const randomSort = (array: string[]) => {
   const unSortedArray = [...array]

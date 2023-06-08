@@ -1,10 +1,15 @@
 import React from 'react';
 import './welcome.scss';
+import { useLocalStorage } from '../../hooks';
 
 export const Welcome = () => {
   const [userName, setUserName] = React.useState<string>();
+  const { setItem } = useLocalStorage();
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (userName) {
+      setItem('user', userName);
+    };
   };
 
   return (
