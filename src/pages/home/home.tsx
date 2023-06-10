@@ -5,7 +5,7 @@ import GitHubIcon from '../../assets/github.svg';
 import './home.scss';
 
 export const Home = () => {
-  const [user, setUser] = React.useState<string | null>(null);
+  const [user, setUser] = React.useState<string | null>(localStorage.getItem('user'));
 
   const getUser = () => {
     if (localStorage.getItem('user') !== null) {
