@@ -1,25 +1,32 @@
 import React from 'react';
 import './welcome.scss';
-import { useLocalStorage } from '../../hooks';
+import { Button } from '..';
 
-export const Welcome = () => {
+interface WelcomeProps {
+  onSubmit: () => void;
+};
+
+export const Welcome: React.FC<WelcomeProps> = ({
+  onSubmit,
+}) => {
   const [userName, setUserName] = React.useState<string>();
-  const { setItem } = useLocalStorage();
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (userName) {
-      setItem('user', userName);
+      localStorage.setItem('user', userName);
+      onSubmit();
     };
   };
 
   return (
     <div className='welcome'>
-      <h1 className='welcome__title'>Welcome</h1>
+      <h2 className='welcome__title'>Welcome</h2>
       <p className='welcome__text'>Please enter your name or nickname to continue.</p>
       <p className='welcome__text'>Don't worry, it's totally safe.</p>
       <form className='welcome__form' onSubmit={(e) => handleSubmit(e)}>
         <input className='welcome__form__input' onChange={(e: React.ChangeEvent<HTMLInputElement>) => setUserName(e.target.value)} />
-        <button className={userName ? 'welcome__form__button' : 'welcome__form__button welcome__form__button--disabled'} type='submit'>Submit</button>
+        <Button text='Submit' type='submit' />
       </form>
     </div>
   );

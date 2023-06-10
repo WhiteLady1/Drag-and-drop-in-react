@@ -6,14 +6,9 @@ import { DEVICES } from './components';
 import './App.scss';
 
 type DeviceContextType = DEVICES;
-type UserContextType = {
-  name: string,
-  points: number,
-};
 
 type DnDContextType = {
   device: DeviceContextType,
-  user: UserContextType,
 };
 
 const getDevice = (): DEVICES => {
@@ -28,7 +23,6 @@ const getDevice = (): DEVICES => {
 
 export const DnDContext = React.createContext<DnDContextType | null>(null);
 
-
 function App() {
   return (
     <div className="app">
@@ -37,7 +31,7 @@ function App() {
         <Route
           path='experiment'
           element={
-            <DnDContext.Provider value={{device: getDevice(), user: {name: 'Adam', points: 5}}}>
+            <DnDContext.Provider value={{device: getDevice()}}>
               <Experiment />
             </DnDContext.Provider>
           }
@@ -45,7 +39,7 @@ function App() {
         <Route
           path='puzzle'
           element={
-            <DnDContext.Provider value={{device: getDevice(), user: {name: 'Adam', points: 5}}}>
+            <DnDContext.Provider value={{device: getDevice()}}>
               <Puzzle />
             </DnDContext.Provider>
           }

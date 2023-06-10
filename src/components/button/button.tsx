@@ -5,6 +5,7 @@ import { DifficultyLevel } from '../difficulty';
 
 interface ButtonProps {
   text: string;
+  type?: "button" | "submit" | "reset";
   linkTo?: string;
   bgColor?: DifficultyLevel;
   isDisabled?: boolean;
@@ -13,6 +14,7 @@ interface ButtonProps {
 
 export const Button: React.FC<ButtonProps> = ({
   text,
+  type = 'button',
   linkTo,
   bgColor,
   isDisabled = false,
@@ -29,7 +31,7 @@ export const Button: React.FC<ButtonProps> = ({
       {linkTo? (
         <Link className={getClassName()} to={linkTo}>{text}</Link>
       ) : (
-        <button className={getClassName()} disabled={isDisabled} onClick={onClick}>{text}</button>
+        <button className={getClassName()} disabled={isDisabled} type={type} onClick={onClick}>{text}</button>
       )}
     </>
   );

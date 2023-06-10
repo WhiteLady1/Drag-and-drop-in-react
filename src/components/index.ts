@@ -8,7 +8,7 @@ export * from './result-card';
 export * from './sample';
 export * from './select-samples';
 export * from './user-card';
-export * from './user-result';
+export * from './welcome';
 
 export * from './mobile-experiment';
 export * from './tablet-experiment';
