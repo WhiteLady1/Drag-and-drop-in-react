@@ -127,7 +127,7 @@ export const Experiment = () => {
     <div className="experiment">
       <h2>Chemical experiment</h2>
       <a className='experiment__link' href='/'>Home</a>
-      <div className='experiment-wrapper'>
+      <div className='experiment__wrapper'>
         {device === 'isMobile' && (
           <MobileExperiment
             samples={[...DATA.map(sampel => ({id: sampel.id, name: sampel.name}))]}

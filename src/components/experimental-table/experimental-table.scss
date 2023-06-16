@@ -1,4 +1,7 @@
 .experimental-table {
+  position: absolute;
+  top: calc(50% - 150px);
+  left: calc(50% - 150px);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -9,13 +12,6 @@
   background-color: #689BA6;
   border: 5px solid rgba(255, 255, 255, 0.352);
   border-radius: 50%;
-
-  @media screen and (min-width: 750px) {
-    grid-column: 3;
-    grid-row: 3;
-    transition: transform .2s;
-    overflow: hidden;
-  }
 
   &--entered {
     transform: scale(105%);

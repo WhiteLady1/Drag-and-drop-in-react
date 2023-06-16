@@ -1,15 +1,18 @@
 .item {
+  position: absolute;
+  top: calc(50% - 75px);
+  left: calc(50% - 55px);
   display: flex;
   flex-direction: column;
   align-items: center;
   cursor: pointer;
 
-  &--in-motion {
-    position: absolute;
-  }
-
   &:hover .item__icon {
     transform: scale(95%);
+  }
+
+  &--selected {
+    position: unset;
   }
 
   &__icon {

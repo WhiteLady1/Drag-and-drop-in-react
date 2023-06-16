@@ -1,0 +1,15 @@
+.tablet-experiment {
+  position: relative;
+  width: 100vw;
+}
+
+.experiment-sampel {
+  &__preview-img {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-position: center;
+    background-size: cover;
+    border-radius: 50%;
+  }
+}

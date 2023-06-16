@@ -3,6 +3,8 @@ import { CleaningProducts, ReactionsData } from "../../data/experimental-data";
 import { ExperimantalTable } from "../experimental-table";
 import { Sample } from "../sample";
 
+import './tablet-experiment.scss';
+
 interface TabletExperimentProps {
   samples: CleaningProducts[];
   itemList: CleaningProducts[];
@@ -27,39 +29,54 @@ export const TabletExperiment:React.FC<TabletExperimentProps> = ({
   onMix,
 }) => {
   const [sample, setSample] = React.useState<CleaningProducts>();
-  const [sampleCoordinates, setSampleCoordinates] = React.useState<number[]>();
+  const [sampleImgCoordinates, setSampleImgCoordinates] = React.useState<number[]>();
+  const [width, setWidth] = React.useState<number>();
+
+  const containerRef = React.useRef<HTMLDivElement>(null);
+
+  React.useLayoutEffect(() => {
+    const containerWidth: number | undefined = containerRef.current?.offsetWidth;
+    setWidth(containerWidth);
+  },[])
+
+  const getTransformation = (index: number, length: number, width: number) => {
+    const angle = (2 * Math.PI) / length;
+    const x = Math.cos(angle * index) * width;
+    const y = Math.sin(angle * index) * width;
+    return [y, x];
+  };
 
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>, id: string) => {
     e.preventDefault();
-    setSampleCoordinates([e.touches[0].pageY, e.touches[0].pageX]);
+    setSampleImgCoordinates([e.touches[0].pageY, e.touches[0].pageX]);
     setSample(samples.find(sample => sample.id === id) && samples.find(sample => sample.id === id));
     onTouchStart(id);
+    console.log([e.touches[0].pageY, e.touches[0].pageX]);
   };
 
   const handleTouchMove = (x: number, y: number) => {
-    setSampleCoordinates([x, y]);
+    setSampleImgCoordinates([x, y]);
   };
 
   const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
     onTouchEnd(e);
-    setSampleCoordinates(undefined);
+    setSampleImgCoordinates(undefined);
   };
 
   return (
-    <>
-      {samples.map((sampel, index) => (
-        <div key={sampel.id} className={`experiment-sampel experiment-sampel${index}`}>
-          <Sample
-            name={sampel.name}
-            image={sampel.image}
-            forDevice='isTablet'
-            selected={itemList.find(experimentItem => experimentItem.id === sampel.id) ? true : false}
-            onTouchStart={(e) => handleTouchStart(e, sampel.id)}
-            onTouchMove={(e) => handleTouchMove(e.changedTouches[0].pageY, e.changedTouches[0].pageX)}
-            onTouchEnd={handleTouchEnd}
-            onTouchCancel={onTouchCancel}
-          />
-        </div>
+    <div ref={containerRef} className="tablet-experiment">
+      {width && samples.map((sampel, index) => (
+        <Sample
+          key={sampel.id}
+          name={sampel.name}
+          image={sampel.image}
+          forDevice='isTablet'
+          coordinates={getTransformation(index, samples.length, 300)}
+          onTouchStart={(e) => handleTouchStart(e, sampel.id)}
+          onTouchMove={(e) => handleTouchMove(e.changedTouches[0].pageY, e.changedTouches[0].pageX)}
+          onTouchEnd={handleTouchEnd}
+          onTouchCancel={onTouchCancel}
+        />
       ))}
       <ExperimantalTable
         itemList={itemList}
@@ -68,7 +85,13 @@ export const TabletExperiment:React.FC<TabletExperimentProps> = ({
         onClose={onCleanTable}
         onMix={onMix}
       />
-      {sample && sampleCoordinates && <Sample   forDevice='isTablet' name={sample.name} image={sample?.image} coordinates={sampleCoordinates} />}
-    </>
+      {sample && sampleImgCoordinates && (
+        <span className='experiment-sampel__preview-img' style={{
+          top: `${sampleImgCoordinates[0] - (width ? width/2 : 0)}px`,
+          left: `${sampleImgCoordinates[1] - 110}px`,
+          backgroundImage: `url(${sample.image})`,
+        }} />
+      )}
+    </div>
   );
 };
